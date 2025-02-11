@@ -84,8 +84,6 @@
       // 4. The API will call this function when the video player is ready.
       function onPlayerReady(event) {
         event.target.playVideo();
-        playerUnu.setVolume(100);
-        playerDoi.setVolume(100);
         bucla();
       }
 
@@ -110,19 +108,23 @@
         var remainingTime = duration - currentTime;
 
         afiseaza(remainingTime, volum);
-        ajusteazaVolum(remainingTime);
+        ajusteazaVolum();
 
       	setTimeout(bucla, precizie);
       }
 
-      function ajusteazaVolum(timp) {
-      	if (timp <= fadeSeconds) {
-      		var elapsedFade = fadeSeconds - timp;
-          
-          var percent = timp / fadeSeconds;
-          
+      function ajusteazaVolum() {
+        var duration = playerUnu.getDuration();
+        var timpActual = playerUnu.getCurrentTime();
+        var timpRamas = duration - timpRamas;
+
+      	if (timpRamas <= fadeSeconds) {
+          var percent = timpRamas / fadeSeconds;
           var newVolume = percent * 100;
-          
+          playerUnu.setVolume(newVolume);
+        } else if (playerUnu.getCurrentTime() <= fadeSeconds) {
+          var percent = timpActual / fadeSeconds;
+          var newVolume = percent * 100;
           playerUnu.setVolume(newVolume);
         } else {
           playerUnu.setVolume(100);
