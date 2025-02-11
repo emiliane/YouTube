@@ -130,7 +130,7 @@
       	if (timpRamas <= fadeSeconds) {
           var percent = timpRamas / fadeSeconds;
           volum = percent * 100;
-        } else if (playerUnu.getCurrentTime() <= fadeSeconds) {
+        } else if (timpActual <= fadeSeconds) {
           var percent = timpActual / fadeSeconds;
           volum = percent * 100;
         } else {
