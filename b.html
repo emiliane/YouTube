@@ -5,7 +5,7 @@
 
   body {
   	font: normal normal 25px Arial, Tahoma, Helvetica, FreeSans, sans-serif;
-  	color: #AA00AA;
+  	color: #000000;
   	padding: 0 40px 40px 40px;
   	background-image:url(https://themes.googleusercontent.com/image?id=16p0DhIQDIoTZOUyiLjbBSajoCvlXtai8rSbZiLnXfEwdwTFgFVIeDYQBf3S_b5BpMAfo);
   	
@@ -28,15 +28,19 @@
 </style>
 
 <head>
-  <title>Jucător de discuri YouTube</title>
+  <title>Jucător de discuri</title>
 </head>
 
 <html>
   <body>
-  	<h1>Jucător de discuri YouTube</h1>
-
-    <h2><button type="button" onclick="invarte()">Învârte</button></h2>
-    <div id="informație"></div>
+  	<h1>Jucător de discuri</h1>
+    <h4>
+      <div>Estompează (secunde):
+      <input type="number" id="estompeaza" name="tentacles" value="8" min="0" max="100" style="width:55px;height:44px;font: normal normal 25px Arial, Tahoma, Helvetica, FreeSans, sans-serif;"/>
+      <button type="button" onclick="invarte()" style="width:144px;background-color:transparent;font: normal normal 25px Arial, Tahoma, Helvetica, FreeSans, sans-serif;">Învârte</button>
+      </div>
+      <div id="informație"></div>
+    </h4>
     
     <script>
       // 2. This code loads the IFrame Player API code asynchronously.
@@ -51,7 +55,7 @@
       var playerUnu;
       var playerDoi;
       var precizie = 44;
-      var fadeSeconds = 30;
+      //var fadeSeconds = 30;
       function onYouTubeIframeAPIReady() {
         playerUnu = new YT.Player('playerUnu', {
           height: '444',
@@ -121,6 +125,7 @@
         var volum;
         var timpActual = redor.getCurrentTime();
         var timpRamas = redor.getDuration() - timpActual;
+        var fadeSeconds = document.getElementById("estompeaza").value
 
       	if (timpRamas <= fadeSeconds) {
           var percent = timpRamas / fadeSeconds;
@@ -138,14 +143,24 @@
       	var titlu = document.querySelector("#player" + numar).title;
         var volum = redor.getVolume();
         var timp = redor.getCurrentTime();
+        var timpRamas = redor.getDuration() - timp;
 
       	document.getElementById('titlu'+ numar).innerHTML = titlu;
-        document.getElementById('informație' + numar).innerHTML = "Volum: " + volum + "</br>Timp: " + timp;
+        document.getElementById('informație' + numar).innerHTML = "Volum: " + volum + "</br>Timp: " + timp.toFixed(2);
 
         if (redor.getPlayerState() == 1) {
-          document.getElementById('informație').innerHTML = "Volum: " + volum + "</br>Timp: " + timp;
+          document.getElementById('informație').innerHTML = "Volum: " + volum + " secunde rămase: " + timpRamas.toFixed(2) + " timp scurs: " + convertStoMs(timp.toFixed(0));
         }
       }
+
+      function convertStoMs(seconds) {
+        let minutes = Math.floor(seconds / 60);
+        let extraSeconds = seconds % 60;
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        extraSeconds = extraSeconds< 10 ? "0" + extraSeconds : extraSeconds;
+        var a = minutes + ":" + extraSeconds;
+        return a;
+      }/**/
 
     </script>
 
