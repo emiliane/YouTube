@@ -116,21 +116,21 @@
       }
 
       function ajusteazaVolum() {
+        var volum;
         var duration = playerUnu.getDuration();
         var timpActual = playerUnu.getCurrentTime();
         var timpRamas = duration - timpRamas;
 
       	if (timpRamas <= fadeSeconds) {
           var percent = timpRamas / fadeSeconds;
-          var newVolume = percent * 100;
-          playerUnu.setVolume(newVolume);
+          volum = percent * 100;
         } else if (playerUnu.getCurrentTime() <= fadeSeconds) {
           var percent = timpActual / fadeSeconds;
-          var newVolume = percent * 100;
-          playerUnu.setVolume(newVolume);
+          volum = percent * 100;
         } else {
-          playerUnu.setVolume(100);
+          volum = 100;
         }
+        playerUnu.setVolume(volum);
       }
 
       function afiseaza(timp, volum) {
