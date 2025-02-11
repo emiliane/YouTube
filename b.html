@@ -36,7 +36,7 @@
   	<h1>Jucător de discuri</h1>
     <h4>
       <div>Estompează (secunde):
-      <input type="number" id="estompeaza" name="tentacles" value="8" min="0" max="100" style="width:55px;height:44px;font: normal normal 25px Arial, Tahoma, Helvetica, FreeSans, sans-serif;"/>
+      <input type="number" id="estompeaza" value="8" min="0" max="100" style="width:55px;height:44px;font: normal normal 25px Arial, Tahoma, Helvetica, FreeSans, sans-serif;"/>
       <button type="button" onclick="invarte()" style="width:144px;background-color:transparent;font: normal normal 25px Arial, Tahoma, Helvetica, FreeSans, sans-serif;">Învârte</button>
       </div>
       <div id="informație"></div>
@@ -54,8 +54,8 @@
       //    after the API code downloads.
       var playerUnu;
       var playerDoi;
+      var fadeSeconds;
       var precizie = 44;
-      //var fadeSeconds = 30;
       function onYouTubeIframeAPIReady() {
         playerUnu = new YT.Player('playerUnu', {
           height: '444',
@@ -113,19 +113,53 @@
         bucla();
       }
       function bucla() {
+        iaValori();
         afiseaza(playerUnu, "Unu");
         afiseaza(playerDoi, "Doi");
         ajusteazaVolum(playerUnu);
         ajusteazaVolum(playerDoi);
-
+        redare();
       	setTimeout(bucla, precizie);
+      }
+
+      function redare() {
+        var principal = damiRedorPrincipal();
+        var secundar = damiRedorSecundar();
+        var timpRamas = principal.getDuration() - principal.getCurrentTime();
+
+        if (timpRamas <= fadeSeconds) {
+          secundar.playVideo();
+        }
+      }
+
+      function iaValori() {
+        fadeSeconds = document.getElementById("estompeaza").value;
+      }
+
+      function damiRedorPrincipal() {
+        var redor;
+        if (playerUnu.getPlayerState() == 1) {
+          redor = playerUnu;
+        } else {
+          redor = playerDoi;
+        }
+        return redor;
+      }
+
+      function damiRedorSecundar() {
+        var redor;
+        if (playerUnu.getPlayerState() == 1) {
+          redor = playerDoi;
+        } else {
+          redor = playerUnu;
+        }
+        return redor;
       }
 
       function ajusteazaVolum(redor) {
         var volum;
         var timpActual = redor.getCurrentTime();
         var timpRamas = redor.getDuration() - timpActual;
-        var fadeSeconds = document.getElementById("estompeaza").value
 
       	if (timpRamas <= fadeSeconds) {
           var percent = timpRamas / fadeSeconds;
