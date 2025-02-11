@@ -110,15 +110,15 @@
         var remainingTime = duration - currentTime;
 
         afiseaza(remainingTime, volum);
-        ajusteazaVolum();
+        ajusteazaVolum(playerUnu);
 
       	setTimeout(bucla, precizie);
       }
 
-      function ajusteazaVolum() {
+      function ajusteazaVolum(redor) {
         var volum;
-        var duration = playerUnu.getDuration();
-        var timpActual = playerUnu.getCurrentTime();
+        var duration = redor.getDuration();
+        var timpActual = redor.getCurrentTime();
         var timpRamas = duration - timpRamas;
 
       	if (timpRamas <= fadeSeconds) {
@@ -130,7 +130,7 @@
         } else {
           volum = 100;
         }
-        playerUnu.setVolume(volum);
+        redor.setVolume(volum);
       }
 
       function afiseaza(timp, volum) {
