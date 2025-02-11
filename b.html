@@ -187,7 +187,7 @@
       	document.getElementById('titlu'+ numar).innerHTML = titlu;
         document.getElementById('informație' + numar).innerHTML = "Volum: " + volum + "</br>Timp: " + timp.toFixed(2);
 
-        if (redor.getPlayerState() == 1) {
+        if (redor.getPlayerState() == YT.PlayerState.PLAYING) {
           document.getElementById('informație').innerHTML = "Volum: " + volum + " secunde rămase: " + timpRamas.toFixed(2) + " timp scurs: " + convertStoMs(timp.toFixed(0));
         }
       }
