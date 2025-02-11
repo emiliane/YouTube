@@ -37,8 +37,8 @@
   <body>
   	<h1>Jucător de discuri YouTube</h1>
 
-    <button type="button" onclick="invarte()">Învârte</button>
-
+    <h2><button type="button" onclick="invarte()">Învârte</button></h2>
+    
     <script>
       // 2. This code loads the IFrame Player API code asynchronously.
       var tag = document.createElement('script');
@@ -85,10 +85,12 @@
       function onPlayerReady(event) {
         //event.target.playVideo();
         playerUnu.unMute();
+        afiseaza(playerUnu, "Unu");
       }
       function onPlayerReady2(event) {
         //event.target.playVideo();
         playerDoi.unMute();
+        afiseaza(playerDoi, "Doi");
       }
 
       // 5. The API calls this function when the player's state changes.
@@ -111,7 +113,8 @@
         bucla();
       }
       function bucla() {
-        afiseaza();
+        afiseaza(playerUnu, "Unu");
+        afiseaza(playerDoi, "Doi");
         ajusteazaVolum(playerUnu);
 
       	setTimeout(bucla, precizie);
@@ -119,9 +122,8 @@
 
       function ajusteazaVolum(redor) {
         var volum;
-        var duration = redor.getDuration();
         var timpActual = redor.getCurrentTime();
-        var timpRamas = duration - timpActual;
+        var timpRamas = redor.getDuration() - timpActual;
 
       	if (timpRamas <= fadeSeconds) {
           var percent = timpRamas / fadeSeconds;
@@ -135,18 +137,18 @@
         redor.setVolume(volum);
       }
 
-      function afiseaza() {
-      	var titlu1 = document.querySelector("#playerUnu").title;
-      	var titlu2 = document.querySelector("#playerDoi").title;
-        var volum1 = playerUnu.getVolume();
-        var volum2 = playerDoi.getVolume();
-        var timp1 = playerUnu.getCurrentTime();
-        var timp2 = playerDoi.getCurrentTime();
+      function afiseaza(redor, numar) {
+      	var titlu = document.querySelector("#player" + numar).title;
+      	//var titlu2 = document.querySelector("#playerDoi").title;
+        var volum = redor.getVolume();
+        //var volum2 = playerDoi.getVolume();
+        var timp = redor.getCurrentTime();
+        //var timp2 = playerDoi.getCurrentTime();
 
-      	document.getElementById('titluUnu').innerHTML =  titlu1;
-      	document.getElementById('titluDoi').innerHTML =  titlu2;
-      	document.getElementById('informațieUnu').innerHTML =  "Volum: " + volum1 + "</br>Timp: " + timp1;
-      	document.getElementById('informațieDoi').innerHTML =  "Volum: " + volum2 + "</br>Timp: " + timp2;
+      	document.getElementById('titlu'+ numar).innerHTML =  titlu;
+      	//document.getElementById('titluDoi').innerHTML =  titlu2;
+      	document.getElementById('informație' + numar).innerHTML =  "Volum: " + volum + "</br>Timp: " + timp;
+      	//document.getElementById('informațieDoi').innerHTML =  "Volum: " + volum2 + "</br>Timp: " + timp2;
       }
 
     </script>
