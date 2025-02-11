@@ -103,13 +103,7 @@
         playerUnu.stopVideo();
       }
       function bucla() {
-        var volum = playerUnu.getVolume();
-     
-        var duration = playerUnu.getDuration();
-        var currentTime = playerUnu.getCurrentTime();
-        var remainingTime = duration - currentTime;
-
-        afiseaza(remainingTime, volum);
+        afiseaza();
         ajusteazaVolum(playerUnu);
 
       	setTimeout(bucla, precizie);
@@ -119,7 +113,7 @@
         var volum;
         var duration = redor.getDuration();
         var timpActual = redor.getCurrentTime();
-        var timpRamas = duration - timpRamas;
+        var timpRamas = duration - timpActual;
 
       	if (timpRamas <= fadeSeconds) {
           var percent = timpRamas / fadeSeconds;
@@ -133,15 +127,18 @@
         redor.setVolume(volum);
       }
 
-      function afiseaza(timp, volum) {
+      function afiseaza() {
       	var titlu1 = document.querySelector("#playerUnu").title;
       	var titlu2 = document.querySelector("#playerDoi").title;
+        var volum1 = playerUnu.getVolume();
+        var volum2 = playerDoi.getVolume();
+        var timp1 = playerUnu.getCurrentTime();
+        var timp2 = playerDoi.getCurrentTime();
 
       	document.getElementById('titluUnu').innerHTML =  titlu1;
       	document.getElementById('titluDoi').innerHTML =  titlu2;
-
-      	document.getElementById('informațieUnu').innerHTML =  " volum: " + volum + "</br>timp rămas: " + timp;
-      	// document.getElementById('informațieDoi').innerHTML =  " volum: " + volum + "</br>timp rămas: " + timp;
+      	document.getElementById('informațieUnu').innerHTML =  "Volum: " + volum1 + "</br>Timp: " + timp1;
+      	document.getElementById('informațieDoi').innerHTML =  "Volum: " + volum2 + "</br>Timp: " + timp2;
       }
 
     </script>
