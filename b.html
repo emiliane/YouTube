@@ -99,11 +99,16 @@
       var doneUnu = false;
       var doneDoi = false;
       function onPlayerStateChange(event) {
-        if (event.data == YT.PlayerState.PLAYING && !doneUnu) {
-          doneUnu = true;
+        if (event.data == YT.PlayerState.ENDED) {
+          playerUnu.cueVideoById("Befy6Fg8s-8");
+          playerUnu.unMute();
         }
       }
       function onPlayerStateChange2(event) {
+        if (event.data == YT.PlayerState.ENDED) {
+          playerDoi.cueVideoById("A94Pe474hYE");
+          playerDoi.unMute();
+        }
       }
       function stopVideo() {
         playerUnu.stopVideo();
