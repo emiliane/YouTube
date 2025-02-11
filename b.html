@@ -50,7 +50,8 @@
 
       // 3. This function creates an <iframe> (and YouTube player)
       //    after the API code downloads.
-      var player;
+      var playerUnu;
+      var playerDoi;
       var precizie = 44;
       var fadeSeconds = 30;
       function onYouTubeIframeAPIReady() {
@@ -123,6 +124,8 @@
           var newVolume = percent * 100;
           
           playerUnu.setVolume(newVolume);
+        } else {
+          playerUnu.setVolume(100);
         }
       }
 
