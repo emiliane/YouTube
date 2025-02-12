@@ -60,7 +60,7 @@
       var playerDoi;
       var fadeSeconds;
       var precizie = 44;
-      var listaVideoclipuri = [];
+      var listaVideoclipuri = ["s7jXASBWwwI", "8NtijaKu8i0", "hJA9vnxwoHU", "apT2MbWd72o"];
       function onYouTubeIframeAPIReady() {
         playerUnu = new YT.Player('playerUnu', {
           height: '444',
@@ -92,6 +92,7 @@
       function onPlayerReady(event) {
         playerUnu.unMute();
         afiseaza(playerUnu, "Unu");
+        afișeazăLista();
       }
       function onPlayerReady2(event) {
         playerDoi.unMute();
@@ -213,7 +214,6 @@
         if (redor.getPlayerState() == YT.PlayerState.PLAYING) {
           document.getElementById('informație').innerHTML = "Volum: " + volum + " secunde rămase: " + timpRamas.toFixed(2) + " timp scurs: " + convertStoMs(timp.toFixed(0));
         }
-        afișeazăLista();
       }
 
       function afișeazăLista() {
