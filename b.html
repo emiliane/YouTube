@@ -123,12 +123,16 @@
         bucla();
       }
       function bucla() {
-        iaValori();
-        afiseaza(playerUnu, "Unu");
-        afiseaza(playerDoi, "Doi");
-        ajusteazaVolum(playerUnu);
-        ajusteazaVolum(playerDoi);
-        redare();
+        try {
+          iaValori();
+          afiseaza(playerUnu, "Unu");
+          afiseaza(playerDoi, "Doi");
+          ajusteazaVolum(playerUnu);
+          ajusteazaVolum(playerDoi);
+          redare();
+        } catch(err) {
+          document.getElementById('informație').innerHTML = err.message;
+        }
       	setTimeout(bucla, precizie);
       }
 
