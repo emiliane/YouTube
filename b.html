@@ -153,7 +153,13 @@
       function iaUrmatoareleVideoclipuri() {
         var text = document.getElementById("lista").value;
         listaVideoclipuri.push(text);
-        document.getElementById('informațieListă').innerHTML = listaVideoclipuri.toString();
+        var info = "";
+        for (let i = 0; i < listaVideoclipuri.length; i++) {
+          var numar = i + 1;
+            info = info + numar + ": [" + listaVideoclipuri[i] + "], ";
+        }
+        info = info.slice(0, -2) + ".";
+        document.getElementById('informațieListă').innerHTML = info;
         document.getElementById("lista").value = "";
       }
 
