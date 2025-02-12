@@ -153,14 +153,8 @@
       function iaUrmatoareleVideoclipuri() {
         var lista = document.getElementById("lista").value.trim().split(/\r?\n/);
         listaVideoclipuri = listaVideoclipuri.concat(lista);
-        var info = "";
-        for (let i = 0; i < listaVideoclipuri.length; i++) {
-          var numar = i + 1;
-            info = info + numar + ": [" + listaVideoclipuri[i] + "], ";
-        }
-        info = info.slice(0, -2) + ".";
-        document.getElementById('informațieListă').innerHTML = info;
         document.getElementById("lista").value = "";
+        afișeazăLista();
       }
 
       function damiUrmătorulVideoclip() {
@@ -218,6 +212,17 @@
         if (redor.getPlayerState() == YT.PlayerState.PLAYING) {
           document.getElementById('informație').innerHTML = "Volum: " + volum + " secunde rămase: " + timpRamas.toFixed(2) + " timp scurs: " + convertStoMs(timp.toFixed(0));
         }
+        afișeazăLista();
+      }
+
+      function afișeazăLista() {
+        var info = "";
+        for (let i = 0; i < listaVideoclipuri.length; i++) {
+          var numar = i + 1;
+            info = info + numar + ": [" + listaVideoclipuri[i] + "], ";
+        }
+        info = info.slice(0, -2) + ".";
+        document.getElementById('informațieListă').innerHTML = info;
       }
 
       function convertStoMs(seconds) {
