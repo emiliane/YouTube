@@ -153,6 +153,7 @@
       function iaUrmatoareleVideoclipuri() {
         var lista = document.getElementById("lista").value.trim().split(/\r?\n/);
         listaVideoclipuri = listaVideoclipuri.concat(lista);
+        listaVideoclipuri = listaVideoclipuri.filter(elm => elm);
         document.getElementById("lista").value = "";
         afișeazăLista();
       }
