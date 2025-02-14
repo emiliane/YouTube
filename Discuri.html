@@ -7,8 +7,9 @@
   	font: normal normal 25px Arial, Tahoma, Helvetica, FreeSans, sans-serif;
   	color: #0A00A0;
   	padding: 0 40px 40px 40px;
-  	background-image:url(https://themes.googleusercontent.com/image?id=16p0DhIQDIoTZOUyiLjbBSajoCvlXtai8rSbZiLnXfEwdwTFgFVIeDYQBf3S_b5BpMAfo);
-  	
+    background: linear-gradient(rgba(222, 222, 222, 0.888), rgba(111, 111, 111, 0.555)), 
+              url(https://themes.googleusercontent.com/image?id=16p0DhIQDIoTZOUyiLjbBSajoCvlXtai8rSbZiLnXfEwdwTFgFVIeDYQBf3S_b5BpMAfo);
+    background-size: cover;
   }
 
   * {
@@ -37,7 +38,7 @@
     <h2><div><a href="https://emisarcrai.blogspot.com/p/jucator-de-discuri.html">Blogger</a> <a href="https://emiliane.github.io/">GitHub</a></div></h2>
     <h4>
       <div>Adaugă videoclipuri după identificator:</div>
-      <textarea id="lista" rows="4" cols="15"></textarea></br>
+      <textarea id="lista" rows="4" cols="44" placeholder="Identificator Nume&#10;&#10;A1B2C3D4E5F Unu&#10;G1H2I3J4K5L Doi"></textarea></br>
       <button type="button" onclick="adaugăVideoclipuriLaÎnceput()" style="width:144px;background-color:rgba(44,0,0,0.4);color: #0A00A0;font: normal normal 25px Arial, Tahoma, Helvetica, FreeSans, sans-serif;">Următor</button>
       <button type="button" onclick="adaugăVideoclipuriLaSfârșit()" style="width:144px;background-color:rgba(44,0,0,0.4);color: #0A00A0;font: normal normal 25px Arial, Tahoma, Helvetica, FreeSans, sans-serif;">În coadă</button>
       <div id="informațieListă"></div>
@@ -62,7 +63,8 @@
       var playerDoi;
       var fadeSeconds;
       var precizie = 44;
-      var listaVideoclipuri = ["zj0gMSmxHHc", "VYweq4hHIBI", "vX3T_fmSEvc", "PYdSiTEnh3k", "IoezWBPGRAc", "hrkQNCUTiKE", "8qZa9xCNeTA", "1DEFmFzxAIU", "lKM-8CZRplI", "s7jXASBWwwI", "8NtijaKu8i0", "hJA9vnxwoHU", "apT2MbWd72o", "lbSPw7f3FxI", "879VY-tA1pY", "ojdbc-ge8qs"];
+      var listaVideoclipuri = [["zj0gMSmxHHc", "Iubirea Ce Ți-O Știu"], ["VYweq4hHIBI", "Perfect - ICF Sunday Night (Official Music Video)"], ["vX3T_fmSEvc", "Fight My Battles / Minhas Guerras // Dante Bowe & Gabriel Guedes | The Send Brasil"], ["s7jXASBWwwI", "I Surrender - Hillsong Worship"]];
+
       function onYouTubeIframeAPIReady() {
         playerUnu = new YT.Player('playerUnu', {
           height: '444',
@@ -156,26 +158,43 @@
       }
 
       function adaugăVideoclipuriLaÎnceput() {
-        var lista = document.getElementById("lista").value.trim().split(/\r?\n/);
-        listaVideoclipuri = lista.concat(listaVideoclipuri);
+        listaVideoclipuri = damiLista().concat(listaVideoclipuri);
         listaVideoclipuri = listaVideoclipuri.filter(elm => elm);
         document.getElementById("lista").value = "";
         afișeazăLista();
       }
 
       function adaugăVideoclipuriLaSfârșit() {
-        var lista = document.getElementById("lista").value.trim().split(/\r?\n/);
-        listaVideoclipuri = listaVideoclipuri.concat(lista);
+        listaVideoclipuri = listaVideoclipuri.concat(damiLista());
         listaVideoclipuri = listaVideoclipuri.filter(elm => elm);
         document.getElementById("lista").value = "";
         afișeazăLista();
+      }
+
+      function damiLista(argument) {
+        var lista = document.getElementById("lista").value.trim().split(/\r?\n/);
+        var listaNoua = [];
+        for (var i = 0; i < lista.length; i++) {
+          if (lista[i]) {
+            var element = lista[i];
+            var identificator = element.substring(0, element.indexOf(' '));
+            var nume = element.substring(element.indexOf(' ') + 1);
+            if (identificator == "") {
+              identificator = element;
+              nume = "Fără nume";
+            }
+            var sublista = [identificator, nume];
+            listaNoua.push(sublista);
+          }
+        }
+        return listaNoua;
       }
 
       function damiUrmătorulVideoclip() {
         let videoclip = listaVideoclipuri.shift();
         listaVideoclipuri.push(videoclip);
         afișeazăLista();
-        return videoclip;
+        return videoclip[0];
       }
 
       function damiRedorPrincipal() {
@@ -230,12 +249,11 @@
       }
 
       function afișeazăLista() {
-        var info = "";
+        var info = "Urmează:</br>";
         for (let i = 0; i < listaVideoclipuri.length; i++) {
           var numar = i + 1;
-            info = info + numar + ": [" + listaVideoclipuri[i] + "], ";
+            info = info + numar + ": " + listaVideoclipuri[i][1] + " [" + listaVideoclipuri[i][0] + "]</br>";
         }
-        info = info.slice(0, -2) + ".";
         document.getElementById('informațieListă').innerHTML = info;
       }
 
