@@ -38,7 +38,8 @@
     <h4>
       <div>Adaugă videoclipuri după identificator:</div>
       <textarea id="lista" rows="4" cols="15"></textarea></br>
-      <button type="button" onclick="iaUrmatoareleVideoclipuri()" style="width:144px;background-color:rgba(44,0,0,0.4);color: #0A00A0;font: normal normal 25px Arial, Tahoma, Helvetica, FreeSans, sans-serif;">Adaugă</button>
+      <button type="button" onclick="adaugăVideoclipuriLaÎnceput()" style="width:144px;background-color:rgba(44,0,0,0.4);color: #0A00A0;font: normal normal 25px Arial, Tahoma, Helvetica, FreeSans, sans-serif;">Următor</button>
+      <button type="button" onclick="adaugăVideoclipuriLaSfârșit()" style="width:144px;background-color:rgba(44,0,0,0.4);color: #0A00A0;font: normal normal 25px Arial, Tahoma, Helvetica, FreeSans, sans-serif;">În coadă</button>
       <div id="informațieListă"></div>
       <div>Estompează (secunde):
       <input type="number" id="estompeaza" value="4" min="0" max="100" style="width:55px;height:44px;font: normal normal 25px Arial, Tahoma, Helvetica, FreeSans, sans-serif;"/></br>
@@ -154,7 +155,15 @@
         fadeSeconds = document.getElementById("estompeaza").value;
       }
 
-      function iaUrmatoareleVideoclipuri() {
+      function adaugăVideoclipuriLaÎnceput() {
+        var lista = document.getElementById("lista").value.trim().split(/\r?\n/);
+        listaVideoclipuri = lista.concat(listaVideoclipuri);
+        listaVideoclipuri = listaVideoclipuri.filter(elm => elm);
+        document.getElementById("lista").value = "";
+        afișeazăLista();
+      }
+
+      function adaugăVideoclipuriLaSfârșit() {
         var lista = document.getElementById("lista").value.trim().split(/\r?\n/);
         listaVideoclipuri = listaVideoclipuri.concat(lista);
         listaVideoclipuri = listaVideoclipuri.filter(elm => elm);
