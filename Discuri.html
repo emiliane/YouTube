@@ -36,28 +36,6 @@
   <body>
   	<h1>Jucător de discuri</h1>
     <h2><div><a href="https://emisarcrai.blogspot.com/p/jucator-de-discuri.html">Blogger</a> <a href="https://emiliane.github.io/">GitHub</a></div></h2>
-    <h4>
-      <div>Adaugă videoclipuri după identificator cu sau fără nume:</div>
-      <textarea id="lista" rows="11" cols="44" placeholder="Identificator Nume&#10;&#10;A1B2C3D4E5F Unu&#10;G1H2I3J4K5L Doi" style="width:100%;">VLfcCMenyyA LZ7 - Home
-G3OTNMoe26g Love & The Outcome - King Of My Heart (Official Music Video)
-a2gUBpGulfQ Riverside Worship - The River Is Here (주님의 강이)
-Fo--H_yx2vg 10,000 Reasons (Live in Times Square) - Matt Redman
-uVTeIMursb8 Steven Curtis Chapman - Do Everything
-b_RjndG0IX8 Matthew West - Do Something
-r0_J2uDyCKk Be Exalted - Watoto Children's Choir
-WtkTXBTTcAw Newsboys - That's How You Change The World
-wP9AnsKtrmo Chris Tomlin - Lay Me Down (Live)
-lX5139rmgGw Chris Tomlin - God's Great Dance Floor (Live)
-Y56lpXvXbs0 OneRepublic - Kids (Official Music Video)</textarea></br>
-      <button type="button" onclick="adaugăVideoclipuriLaÎnceput()" style="width:144px;background-color:rgba(44,0,0,0.4);color: #0A00A0;font: normal normal 25px Arial, Tahoma, Helvetica, FreeSans, sans-serif;">Următor</button>
-      <button type="button" onclick="adaugăVideoclipuriLaSfârșit()" style="width:188px;background-color:rgba(44,0,0,0.4);color: #0A00A0;font: normal normal 25px Arial, Tahoma, Helvetica, FreeSans, sans-serif;">În coadă</button></br></br>
-      <div>Estompează (secunde):
-      <input type="number" id="estompeaza" value="4" min="0" max="100" style="width:55px;height:44px;font: normal normal 25px Arial, Tahoma, Helvetica, FreeSans, sans-serif;"/></br>
-      <button type="button" onclick="invarte()" style="width:144px;background-color:rgba(44,0,0,0.4);color: #0A00A0;font: normal normal 25px Arial, Tahoma, Helvetica, FreeSans, sans-serif;">Învârte</button>
-      </div>
-      <div id="informație"></div>
-      <div id="informațieListă"></div>
-    </h4>
     
     <script>
       // 2. This code loads the IFrame Player API code asynchronously.
@@ -305,6 +283,36 @@ Y56lpXvXbs0 OneRepublic - Kids (Official Music Video)</textarea></br>
 
         <div id="informațieDoi"></div>
       </div>
+    </div>
+    <div>
+          <h4>
+                  <div>
+
+            <button type="button" onclick="invarte()" style="background-color:rgba(44,0,0,0.4);color: #0A00A0;font: normal normal 25px Arial, Tahoma, Helvetica, FreeSans, sans-serif;">Învârte</button>
+      Estompează (secunde):
+      <input type="number" id="estompeaza" value="4" min="0" max="100" style="width:55px;height:44px;font: normal normal 25px Arial, Tahoma, Helvetica, FreeSans, sans-serif;"/>
+      </div>
+      
+      <div id="informație"></div>
+    </br>
+      <div id="informațieListă"></div>
+    </br>
+      <div>Adaugă videoclipuri după identificator cu sau fără nume:</div>
+      <textarea id="lista" rows="11" cols="44" placeholder="Identificator Nume&#10;&#10;A1B2C3D4E5F Unu&#10;G1H2I3J4K5L Doi" style="width:100%;">VLfcCMenyyA LZ7 - Home
+G3OTNMoe26g Love & The Outcome - King Of My Heart (Official Music Video)
+a2gUBpGulfQ Riverside Worship - The River Is Here (주님의 강이)
+Fo--H_yx2vg 10,000 Reasons (Live in Times Square) - Matt Redman
+uVTeIMursb8 Steven Curtis Chapman - Do Everything
+b_RjndG0IX8 Matthew West - Do Something
+r0_J2uDyCKk Be Exalted - Watoto Children's Choir
+WtkTXBTTcAw Newsboys - That's How You Change The World
+wP9AnsKtrmo Chris Tomlin - Lay Me Down (Live)
+lX5139rmgGw Chris Tomlin - God's Great Dance Floor (Live)
+Y56lpXvXbs0 OneRepublic - Kids (Official Music Video)</textarea></br>
+      <button type="button" onclick="adaugăVideoclipuriLaÎnceput()" style="background-color:rgba(44,0,0,0.4);color: #0A00A0;font: normal normal 25px Arial, Tahoma, Helvetica, FreeSans, sans-serif;">Următor</button>
+      <button type="button" onclick="adaugăVideoclipuriLaSfârșit()" style="background-color:rgba(44,0,0,0.4);color: #0A00A0;font: normal normal 25px Arial, Tahoma, Helvetica, FreeSans, sans-serif;">În coadă</button></br></br>
+    </h4>
+
     </div>
   </body>
 </html>
