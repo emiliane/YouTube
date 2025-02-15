@@ -265,6 +265,12 @@ Y56lpXvXbs0 OneRepublic - Kids (Official Music Video)</textarea><br>
 
     function afiseaza(redor, numar) {
     	var titlu = document.querySelector("#player" + numar).title;
+
+      if (titlu == "YouTube video player") {
+        redor.cueVideoById(damiUrmătorulVideoclip(playerUnuInfromații));
+        redor.unMute();
+      }
+
       var volum = redor.getVolume();
       var timp = redor.getCurrentTime();
       var timpRamas = redor.getDuration() - timp;
