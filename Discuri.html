@@ -35,17 +35,14 @@
 
 </style>
 
-<head>
-  <title>Jucător de discuri</title>
-</head>
-
 <html>
-  <body>
-  	<h1>Jucător de discuri</h1>
-    <h2><div><a href="https://emisarcrai.blogspot.com/p/jucator-de-discuri.html">Blogger</a> <a href="https://emiliane.github.io/">GitHub</a></div></h2>
-    <h4>
-      <div>Adaugă videoclipuri după identificator cu sau fără nume:</div>
-      <textarea class="scris" id="lista" rows="11" cols="44" placeholder="Identificator Nume&#10;&#10;A1B2C3D4E5F Unu&#10;G1H2I3J4K5L Doi" style="width:100%;">VLfcCMenyyA LZ7 - Home
+<head><title>Jucător de discuri</title></head>
+<body>
+  <h1>Jucător de discuri</h1>
+  <h2><div><a href="https://emisarcrai.blogspot.com/p/jucator-de-discuri.html">Blogger</a> <a href="https://emiliane.github.io/">GitHub</a></div></h2>
+  <h4>
+    <div>Adaugă videoclipuri după identificator cu sau fără nume:</div>
+    <textarea class="scris" id="lista" rows="11" cols="44" placeholder="Identificator Nume&#10;&#10;A1B2C3D4E5F Unu&#10;G1H2I3J4K5L Doi" style="width:100%;">VLfcCMenyyA LZ7 - Home
 G3OTNMoe26g Love & The Outcome - King Of My Heart (Official Music Video)
 a2gUBpGulfQ Riverside Worship - The River Is Here (주님의 강이)
 Fo--H_yx2vg 10,000 Reasons (Live in Times Square) - Matt Redman
@@ -56,262 +53,257 @@ WtkTXBTTcAw Newsboys - That's How You Change The World
 wP9AnsKtrmo Chris Tomlin - Lay Me Down (Live)
 lX5139rmgGw Chris Tomlin - God's Great Dance Floor (Live)
 Y56lpXvXbs0 OneRepublic - Kids (Official Music Video)</textarea></br>
-      <button class="scris" type="button" onclick="adaugăVideoclipuriLaÎnceput()">Următor</button>
-      <button class="scris" type="button" onclick="adaugăVideoclipuriLaSfârșit()">În coadă</button></br></br>
-      <div>Estompează (secunde):
+    <button class="scris" type="button" onclick="adaugăVideoclipuriLaÎnceput()">Următor</button>
+    <button class="scris" type="button" onclick="adaugăVideoclipuriLaSfârșit()">În coadă</button></br></br>
+    <div>Estompează (secunde):
       <input class="scris" type="number" id="estompeaza" value="4" min="0" max="100"></br>
       <button class="scris" type="button" onclick="invarte()">Învârte</button>
-      </div>
-      <div id="informație"></div>
-      <div id="informațieListă"></div>
-    </h4>
-    
-    <script>
-      // 2. This code loads the IFrame Player API code asynchronously.
-      var tag = document.createElement('script');
-
-      tag.src = "https://www.youtube.com/iframe_api";
-      var firstScriptTag = document.getElementsByTagName('script')[0];
-      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-      // 3. This function creates an <iframe> (and YouTube player)
-      //    after the API code downloads.
-      var playerUnu;
-      var playerDoi;
-      var fadeSeconds;
-      var precizie = 44;
-      var listaVideoclipuri = [["zj0gMSmxHHc", "Iubirea Ce Ți-O Știu"], ["VYweq4hHIBI", "Perfect - ICF Sunday Night (Official Music Video)"]];
-
-      function onYouTubeIframeAPIReady() {
-        playerUnu = new YT.Player('playerUnu', {
-          height: '444',
-          width: '100%',
-          videoId: damiUrmătorulVideoclip(),
-          host: 'https://www.youtube-nocookie.com',
-          playerVars: {
-            'playsinline': 1
-          },
-          events: {
-            'onReady': onPlayerReady,
-            'onStateChange': onPlayerStateChange
-          }
-        });
-        playerDoi = new YT.Player('playerDoi', {
-          height: '444',
-          width: '100%',
-          videoId: damiUrmătorulVideoclip(),
-          host: 'https://www.youtube-nocookie.com',
-          playerVars: {
-            'playsinline': 1
-          },
-          events: {
-            'onReady': onPlayerReady2,
-            'onStateChange': onPlayerStateChange2
-          }
-        });
-      }
-
-      // 4. The API will call this function when the video player is ready.
-      function onPlayerReady(event) {
-        playerUnu.unMute();
-        afiseaza(playerUnu, "Unu");
-        afișeazăLista();
-      }
-      function onPlayerReady2(event) {
-        playerDoi.unMute();
-        afiseaza(playerDoi, "Doi");
-      }
-
-      // 5. The API calls this function when the player's state changes.
-      //    The function indicates that when playing a video (state=1),
-      //    the player should play for six seconds and then stop.
-      var doneUnu = false;
-      var doneDoi = false;
-      function onPlayerStateChange(event) {
-        if (event.data == YT.PlayerState.ENDED) {
-          playerUnu.cueVideoById(damiUrmătorulVideoclip());
-          playerUnu.unMute();
-        }
-      }
-      function onPlayerStateChange2(event) {
-        if (event.data == YT.PlayerState.ENDED) {
-          playerDoi.cueVideoById(damiUrmătorulVideoclip());
-          playerDoi.unMute();
-        }
-      }
-      function stopVideo() {
-        playerUnu.stopVideo();
-      }
-      function invarte() {
-        playerUnu.playVideo();
-        bucla();
-      }
-      function bucla() {
-        try {
-          iaValori();
-          afiseaza(playerUnu, "Unu");
-          afiseaza(playerDoi, "Doi");
-          ajusteazaVolum(playerUnu);
-          ajusteazaVolum(playerDoi);
-          redare();
-        } catch(err) {
-          document.getElementById('informație').innerHTML = err.message;
-        }
-      	setTimeout(bucla, precizie);
-      }
-
-      function redare() {
-        var principal = damiRedorPrincipal();
-        var secundar = damiRedorSecundar();
-        var timpRamas = principal.getDuration() - principal.getCurrentTime();
-
-        if (timpRamas <= fadeSeconds) {
-          secundar.playVideo();
-        }
-      }
-
-      function iaValori() {
-        fadeSeconds = document.getElementById("estompeaza").value;
-      }
-
-      function adaugăVideoclipuriLaÎnceput() {
-        listaVideoclipuri = damiLista().concat(listaVideoclipuri);
-        listaVideoclipuri = listaVideoclipuri.filter(elm => elm);
-        document.getElementById("lista").value = "";
-        afișeazăLista();
-      }
-
-      function adaugăVideoclipuriLaSfârșit() {
-        listaVideoclipuri = listaVideoclipuri.concat(damiLista());
-        listaVideoclipuri = listaVideoclipuri.filter(elm => elm);
-        document.getElementById("lista").value = "";
-        afișeazăLista();
-      }
-
-      function damiLista(argument) {
-        var lista = document.getElementById("lista").value.trim().split(/\r?\n/);
-        var listaNoua = [];
-        for (var i = 0; i < lista.length; i++) {
-          if (lista[i]) {
-            var element = lista[i];
-            var identificator = element.substring(0, element.indexOf(' '));
-            var nume = element.substring(element.indexOf(' ') + 1);
-            if (identificator == "") {
-              identificator = element;
-              nume = "Fără nume";
-            }
-            var sublista = [identificator, nume];
-            listaNoua.push(sublista);
-          }
-        }
-        return listaNoua;
-      }
-
-      function damiUrmătorulVideoclip() {
-        let videoclip = listaVideoclipuri.shift();
-        listaVideoclipuri.push(videoclip);
-        afișeazăLista();
-        return videoclip[0];
-      }
-
-      function damiRedorPrincipal() {
-        var redor;
-        if (playerUnu.getPlayerState() == YT.PlayerState.PLAYING) {
-          redor = playerUnu;
-        } else {
-          redor = playerDoi;
-        }
-        return redor;
-      }
-
-      function damiRedorSecundar() {
-        var redor;
-        if (playerUnu.getPlayerState() == 1) {
-          redor = playerDoi;
-        } else {
-          redor = playerUnu;
-        }
-        return redor;
-      }
-
-      function ajusteazaVolum(redor) {
-        var volum;
-        var timpActual = redor.getCurrentTime();
-        var timpRamas = redor.getDuration() - timpActual;
-
-      	if (timpRamas <= fadeSeconds) {
-          var percent = timpRamas / fadeSeconds;
-          volum = percent * 100;
-        } else if (timpActual <= fadeSeconds) {
-          var percent = timpActual / fadeSeconds;
-          volum = percent * 100;
-        } else {
-          volum = 100;
-        }
-        redor.setVolume(volum);
-      }
-
-      function afiseaza(redor, numar) {
-      	var titlu = document.querySelector("#player" + numar).title;
-        var volum = redor.getVolume();
-        var timp = redor.getCurrentTime();
-        var timpRamas = redor.getDuration() - timp;
-
-      	document.getElementById('titlu'+ numar).innerHTML = titlu;
-        document.getElementById('informație' + numar).innerHTML = "Volum: " + volum + "</br>Timp: " + timp.toFixed(2);
-
-        if (redor.getPlayerState() == YT.PlayerState.PLAYING) {
-          document.getElementById('informație').innerHTML = "Volum: " + volum + " secunde rămase: " + timpRamas.toFixed(2) + " timp scurs: " + convertStoMs(timp.toFixed(0));
-        }
-      }
-
-      function afișeazăLista() {
-        var info = "Urmează:</br>";
-        for (let i = 0; i < listaVideoclipuri.length; i++) {
-          var numar = i + 1;
-            info = info + numar + ": " + listaVideoclipuri[i][1] + " [" + listaVideoclipuri[i][0] + "]" + damiButonulȘtergeVideoclip(i) + "</br>";
-        }
-        document.getElementById('informațieListă').innerHTML = info;
-      }
-
-      function damiButonulȘtergeVideoclip(număr) {
-        var a = ' <button type="button" onclick="ștergeVideoclip(' + număr + ')">Șterge</button>';
-        return a;
-      }
-
-      function ștergeVideoclip(număr) {
-        listaVideoclipuri.splice(număr, 1); // remove 1 element at index număr
-        afișeazăLista();
-      }
-
-      function convertStoMs(seconds) {
-        let minutes = Math.floor(seconds / 60);
-        let extraSeconds = seconds % 60;
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        extraSeconds = extraSeconds< 10 ? "0" + extraSeconds : extraSeconds;
-        var a = minutes + ":" + extraSeconds;
-        return a;
-      }
-
-    </script>
+    </div>
+    <div id="informație"></div>
+    <div id="informațieListă"></div>
+  </h4>
 
   <div class="row">
     <div class="column" style="background-color:#07a;">
       <h4 id="titluUnu"></h4>
-
-      <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
-        <div id="playerUnu"></div>
-
+      <div id="playerUnu"></div><!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
       <div id="informațieUnu"></div>
     </div>
     <div class="column" style="background-color:#a70;">
       <h4 id="titluDoi"></h4>
-
-      <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
-        <div id="playerDoi"></div>
-
-        <div id="informațieDoi"></div>
-      </div>
+      <div id="playerDoi"></div><!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
+      <div id="informațieDoi"></div>
     </div>
-  </body>
+  </div>
+
+    
+  <script>
+    // 2. This code loads the IFrame Player API code asynchronously.
+    var tag = document.createElement('script');
+
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    // 3. This function creates an <iframe> (and YouTube player)
+    //    after the API code downloads.
+    var playerUnu;
+    var playerDoi;
+    var fadeSeconds;
+    var precizie = 44;
+    var listaVideoclipuri = [["zj0gMSmxHHc", "Iubirea Ce Ți-O Știu"], ["VYweq4hHIBI", "Perfect - ICF Sunday Night (Official Music Video)"]];
+
+    function onYouTubeIframeAPIReady() {
+      playerUnu = new YT.Player('playerUnu', {
+        height: '444',
+        width: '100%',
+        videoId: damiUrmătorulVideoclip(),
+        host: 'https://www.youtube-nocookie.com',
+        playerVars: {
+          'playsinline': 1
+        },
+        events: {
+          'onReady': onPlayerReady,
+          'onStateChange': onPlayerStateChange
+        }
+      });
+      playerDoi = new YT.Player('playerDoi', {
+        height: '444',
+        width: '100%',
+        videoId: damiUrmătorulVideoclip(),
+        host: 'https://www.youtube-nocookie.com',
+        playerVars: {
+          'playsinline': 1
+        },
+        events: {
+          'onReady': onPlayerReady2,
+          'onStateChange': onPlayerStateChange2
+        }
+      });
+    }
+
+    // 4. The API will call this function when the video player is ready.
+    function onPlayerReady(event) {
+      playerUnu.unMute();
+      afiseaza(playerUnu, "Unu");
+      afișeazăLista();
+    }
+    function onPlayerReady2(event) {
+      playerDoi.unMute();
+      afiseaza(playerDoi, "Doi");
+    }
+
+    // 5. The API calls this function when the player's state changes.
+    //    The function indicates that when playing a video (state=1),
+    //    the player should play for six seconds and then stop.
+    var doneUnu = false;
+    var doneDoi = false;
+    function onPlayerStateChange(event) {
+      if (event.data == YT.PlayerState.ENDED) {
+        playerUnu.cueVideoById(damiUrmătorulVideoclip());
+        playerUnu.unMute();
+      }
+    }
+    function onPlayerStateChange2(event) {
+      if (event.data == YT.PlayerState.ENDED) {
+        playerDoi.cueVideoById(damiUrmătorulVideoclip());
+        playerDoi.unMute();
+      }
+    }
+    function stopVideo() {
+      playerUnu.stopVideo();
+    }
+    function invarte() {
+      playerUnu.playVideo();
+      bucla();
+    }
+    function bucla() {
+      try {
+        iaValori();
+        afiseaza(playerUnu, "Unu");
+        afiseaza(playerDoi, "Doi");
+        ajusteazaVolum(playerUnu);
+        ajusteazaVolum(playerDoi);
+        redare();
+      } catch(err) {
+        document.getElementById('informație').innerHTML = err.message;
+      }
+    	setTimeout(bucla, precizie);
+    }
+
+    function redare() {
+      var principal = damiRedorPrincipal();
+      var secundar = damiRedorSecundar();
+      var timpRamas = principal.getDuration() - principal.getCurrentTime();
+
+      if (timpRamas <= fadeSeconds) {
+        secundar.playVideo();
+      }
+    }
+
+    function iaValori() {
+      fadeSeconds = document.getElementById("estompeaza").value;
+    }
+
+    function adaugăVideoclipuriLaÎnceput() {
+      listaVideoclipuri = damiLista().concat(listaVideoclipuri);
+      listaVideoclipuri = listaVideoclipuri.filter(elm => elm);
+      document.getElementById("lista").value = "";
+      afișeazăLista();
+    }
+
+    function adaugăVideoclipuriLaSfârșit() {
+      listaVideoclipuri = listaVideoclipuri.concat(damiLista());
+      listaVideoclipuri = listaVideoclipuri.filter(elm => elm);
+      document.getElementById("lista").value = "";
+      afișeazăLista();
+    }
+
+    function damiLista(argument) {
+      var lista = document.getElementById("lista").value.trim().split(/\r?\n/);
+      var listaNoua = [];
+      for (var i = 0; i < lista.length; i++) {
+        if (lista[i]) {
+          var element = lista[i];
+          var identificator = element.substring(0, element.indexOf(' '));
+          var nume = element.substring(element.indexOf(' ') + 1);
+          if (identificator == "") {
+            identificator = element;
+            nume = "Fără nume";
+          }
+          var sublista = [identificator, nume];
+          listaNoua.push(sublista);
+        }
+      }
+      return listaNoua;
+    }
+
+    function damiUrmătorulVideoclip() {
+      let videoclip = listaVideoclipuri.shift();
+      listaVideoclipuri.push(videoclip);
+      afișeazăLista();
+      return videoclip[0];
+    }
+
+    function damiRedorPrincipal() {
+      var redor;
+      if (playerUnu.getPlayerState() == YT.PlayerState.PLAYING) {
+        redor = playerUnu;
+      } else {
+        redor = playerDoi;
+      }
+      return redor;
+    }
+
+    function damiRedorSecundar() {
+      var redor;
+      if (playerUnu.getPlayerState() == 1) {
+        redor = playerDoi;
+      } else {
+        redor = playerUnu;
+      }
+      return redor;
+    }
+
+    function ajusteazaVolum(redor) {
+      var volum;
+      var timpActual = redor.getCurrentTime();
+      var timpRamas = redor.getDuration() - timpActual;
+
+    	if (timpRamas <= fadeSeconds) {
+        var percent = timpRamas / fadeSeconds;
+        volum = percent * 100;
+      } else if (timpActual <= fadeSeconds) {
+        var percent = timpActual / fadeSeconds;
+        volum = percent * 100;
+      } else {
+        volum = 100;
+      }
+      redor.setVolume(volum);
+    }
+
+    function afiseaza(redor, numar) {
+    	var titlu = document.querySelector("#player" + numar).title;
+      var volum = redor.getVolume();
+      var timp = redor.getCurrentTime();
+      var timpRamas = redor.getDuration() - timp;
+
+    	document.getElementById('titlu'+ numar).innerHTML = titlu;
+      document.getElementById('informație' + numar).innerHTML = "Volum: " + volum + "</br>Timp: " + timp.toFixed(2);
+
+      if (redor.getPlayerState() == YT.PlayerState.PLAYING) {
+        document.getElementById('informație').innerHTML = "Volum: " + volum + " secunde rămase: " + timpRamas.toFixed(2) + " timp scurs: " + convertStoMs(timp.toFixed(0));
+      }
+    }
+
+    function afișeazăLista() {
+      var info = "Urmează:</br>";
+      for (let i = 0; i < listaVideoclipuri.length; i++) {
+        var numar = i + 1;
+          info = info + numar + ": " + listaVideoclipuri[i][1] + " [" + listaVideoclipuri[i][0] + "]" + damiButonulȘtergeVideoclip(i) + "</br>";
+      }
+      document.getElementById('informațieListă').innerHTML = info;
+    }
+
+    function damiButonulȘtergeVideoclip(număr) {
+      var a = ' <button type="button" onclick="ștergeVideoclip(' + număr + ')">Șterge</button>';
+      return a;
+    }
+
+    function ștergeVideoclip(număr) {
+      listaVideoclipuri.splice(număr, 1); // remove 1 element at index număr
+      afișeazăLista();
+    }
+
+    function convertStoMs(seconds) {
+      let minutes = Math.floor(seconds / 60);
+      let extraSeconds = seconds % 60;
+      minutes = minutes < 10 ? "0" + minutes : minutes;
+      extraSeconds = extraSeconds< 10 ? "0" + extraSeconds : extraSeconds;
+      var a = minutes + ":" + extraSeconds;
+      return a;
+    }
+
+  </script>
+</body>
 </html>
