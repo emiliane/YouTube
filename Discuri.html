@@ -4,7 +4,7 @@
 <style type="text/css">
 
   body {
-  	font: normal normal 25px Arial, Tahoma, Helvetica, FreeSans, sans-serif;
+  	font: normal 25px Helvetica;
   	color: #0A00A0;
   	padding: 0 40px 40px 40px;
     background: linear-gradient(rgba(222, 222, 222, 0.888), rgba(111, 111, 111, 0.555)), 
@@ -24,6 +24,13 @@
   .column {
     flex: 50%;
     padding: 10px;
+  }
+
+  .scris {
+    font: normal 25px Helvetica;
+    background-color:rgba(44,0,0,0.1);
+    border-radius: 4px;
+    color: #0A00A0;
   }
 
 </style>
@@ -246,7 +253,7 @@
       }
 
       function damiButonulȘtergeVideoclip(număr) {
-        var a = ' <button type="button" onclick="ștergeVideoclip(' + număr + ')" style="background-color:rgba(0,0,0,0.001);">Șterge</button>';
+        var a = ' <button class="scris" type="button" onclick="ștergeVideoclip(' + număr + ')">Șterge</button>';
         return a;
       }
 
@@ -284,22 +291,23 @@
         <div id="informațieDoi"></div>
       </div>
     </div>
-    <div>
-          <h4>
-                  <div>
+<div>
+      <h4>
+        <div>
+          <button class="scris" type="button" onclick="invarte()">Învârte</button><br>
+          <div id="informație"></div>
+          <div>Estompează:</div>
+          <input class="scris" type="number" id="estompeaza" value="4" min="0" max="1000">secunde
+        </div>
+      <br>
+      <div id="informațieListă">Urmează:<br>1: Iubirea Ce Ți-O Știu [zj0gMSmxHHc] <button class="scris" type="button" onclick="ștergeVideoclip(0)">Șterge</button><br>2: Perfect - ICF Sunday Night (Official Music Video) [VYweq4hHIBI] <button class="scris" type="button" onclick="ștergeVideoclip(1)">Șterge</button><br></div>
+    <br>
+    <div>Adaugă videoclipuri după identificator cu sau fără nume:</div>
+    <textarea class="scris" id="lista" rows="8" cols="44" placeholder="Identificator Nume
 
-            <button type="button" onclick="invarte()" style="background-color:rgba(44,0,0,0.4);color: #0A00A0;font: normal normal 25px Arial, Tahoma, Helvetica, FreeSans, sans-serif;">Învârte</button>
-      Estompează (secunde):
-      <input type="number" id="estompeaza" value="4" min="0" max="100" style="width:55px;height:44px;font: normal normal 25px Arial, Tahoma, Helvetica, FreeSans, sans-serif;"/>
-      </div>
-      
-      <div id="informație"></div>
-    </br>
-      <div id="informațieListă"></div>
-    </br>
-      <div>Adaugă videoclipuri după identificator cu sau fără nume:</div>
-      <textarea id="lista" rows="11" cols="44" placeholder="Identificator Nume&#10;&#10;A1B2C3D4E5F Unu&#10;G1H2I3J4K5L Doi" style="width:100%;">VLfcCMenyyA LZ7 - Home
-G3OTNMoe26g Love & The Outcome - King Of My Heart (Official Music Video)
+A1B2C3D4E5F Unu
+G1H2I3J4K5L Doi" style="width:100%;">VLfcCMenyyA LZ7 - Home
+G3OTNMoe26g Love &amp; The Outcome - King Of My Heart (Official Music Video)
 a2gUBpGulfQ Riverside Worship - The River Is Here (주님의 강이)
 Fo--H_yx2vg 10,000 Reasons (Live in Times Square) - Matt Redman
 uVTeIMursb8 Steven Curtis Chapman - Do Everything
@@ -308,11 +316,11 @@ r0_J2uDyCKk Be Exalted - Watoto Children's Choir
 WtkTXBTTcAw Newsboys - That's How You Change The World
 wP9AnsKtrmo Chris Tomlin - Lay Me Down (Live)
 lX5139rmgGw Chris Tomlin - God's Great Dance Floor (Live)
-Y56lpXvXbs0 OneRepublic - Kids (Official Music Video)</textarea></br>
-      <button type="button" onclick="adaugăVideoclipuriLaÎnceput()" style="background-color:rgba(44,0,0,0.4);color: #0A00A0;font: normal normal 25px Arial, Tahoma, Helvetica, FreeSans, sans-serif;">Următor</button>
-      <button type="button" onclick="adaugăVideoclipuriLaSfârșit()" style="background-color:rgba(44,0,0,0.4);color: #0A00A0;font: normal normal 25px Arial, Tahoma, Helvetica, FreeSans, sans-serif;">În coadă</button></br></br>
-    </h4>
+Y56lpXvXbs0 OneRepublic - Kids (Official Music Video)</textarea><br>
+<button class="scris" type="button" onclick="adaugăVideoclipuriLaÎnceput()">Următor</button>
+<button class="scris" type="button" onclick="adaugăVideoclipuriLaSfârșit()">În coadă</button><br><br>
+</h4>
+</div>
 
-    </div>
-  </body>
+</body>
 </html>
