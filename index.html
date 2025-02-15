@@ -26,7 +26,7 @@
     padding: 10px;
   }
 
-  .scris {
+  input, button, textarea, .scris {
     font: normal 25px Helvetica;
     background-color:rgba(44,0,0,0.1);
     border-radius: 4px;
@@ -51,18 +51,18 @@
     </div>
   </div>
 
-  <h4>
-    <div>
-      <button class="scris" type="button" onclick="invarte()">Învârte</button>
+  <h4 class="scris">
+    <div >
+      <button type="button" onclick="invarte()">Învârte</button>
       Estompează:
-      <input class="scris" type="number" id="estompeaza" value="4" min="0" max="100">
+      <input type="number" id="estompeaza" value="4" min="0" max="100">
       secunde
       <br>
     </div>
     <div id="informație"></div><br>
     <div id="informațieListă"></div><br>
     <div>Adaugă videoclipuri după identificator cu sau fără nume:</div>
-    <textarea class="scris" id="lista" rows="11" cols="44" placeholder="Identificator Nume&#10;&#10;A1B2C3D4E5F Unu&#10;G1H2I3J4K5L Doi" style="width:100%;">VLfcCMenyyA LZ7 - Home
+    <textarea id="lista" rows="11" cols="44" placeholder="Identificator Nume&#10;&#10;A1B2C3D4E5F Unu&#10;G1H2I3J4K5L Doi" style="width:100%;">VLfcCMenyyA LZ7 - Home
 G3OTNMoe26g Love & The Outcome - King Of My Heart (Official Music Video)
 a2gUBpGulfQ Riverside Worship - The River Is Here (주님의 강이)
 Fo--H_yx2vg 10,000 Reasons (Live in Times Square) - Matt Redman
@@ -73,8 +73,8 @@ WtkTXBTTcAw Newsboys - That's How You Change The World
 wP9AnsKtrmo Chris Tomlin - Lay Me Down (Live)
 lX5139rmgGw Chris Tomlin - God's Great Dance Floor (Live)
 Y56lpXvXbs0 OneRepublic - Kids (Official Music Video)</textarea><br>
-    <button class="scris" type="button" onclick="adaugăVideoclipuriLaÎnceput()">Următor</button>
-    <button class="scris" type="button" onclick="adaugăVideoclipuriLaSfârșit()">În coadă</button><br><br>
+    <button type="button" onclick="adaugăVideoclipuriLaÎnceput()">Următor</button>
+    <button type="button" onclick="adaugăVideoclipuriLaSfârșit()">În coadă</button><br><br>
   </h4>
   <div><a href="https://emisarcrai.blogspot.com/p/jucator-de-discuri.html">Blogger</a> <a href="https://emiliane.github.io/">GitHub</a></div>
     
@@ -287,7 +287,7 @@ Y56lpXvXbs0 OneRepublic - Kids (Official Music Video)</textarea><br>
     }
 
     function damiButonulȘtergeVideoclip(număr) {
-      var a = ' <button class="scris" type="button" onclick="ștergeVideoclip(' + număr + ')">Șterge</button>';
+      var a = ' <button type="button" onclick="ștergeVideoclip(' + număr + ')">Șterge</button>';
       return a;
     }
 
